@@ -1,0 +1,424 @@
+/*
+*
+* CSS written based on SMACSS architecture.
+* To learn more, visit: http://smacss.com/
+*
+* For simplicity, no reset or normalize is added.
+* To learn more, visit: https://css-tricks.com/reboot-resets-reasoning/
+*
+* Applied response on   screen-width is found at the end all of the page .
+*/
+
+
+
+/* ---- Base Rules ---- */
+body {
+   background: rgb(136,203,171);
+   background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
+   margin: 0;
+   font-family: 'Merriweather', serif;
+   color: #fff;
+}
+
+
+/* Typeography General*/
+h1 {
+   font-family: 'Fira Sans', sans-serif;
+   font-size: 5em;
+   margin: 2em 1rem;
+}
+
+@media only screen and (min-width: 35em){
+   h1 {
+       font-size: 7em;
+       margin: 2em 4rem 1em;
+   }
+}
+
+h2 {
+   border-bottom: 1px solid #cc1;
+   font-family: 'Oxygen', Sans-Serif;
+   font-size: 3em;
+   color: #fff;
+}
+
+p {
+   line-height: 1.6em;
+   color: #eee;
+}
+
+/* ---- Layout Rules ---- */
+main {
+   margin: 10vh 1em 10vh;
+}
+
+.main-hero {
+   min-height: 40vh;
+   padding-top: 3em;
+}
+
+section {
+   position: relative;
+   min-height: 80vh;
+}
+
+/* ---- Module Rules ---- */
+
+/* Navigation Styles*/
+.navbar__menu ul {
+
+   display:flex;
+   justify-content: space-between;
+   margin: 5px;
+   text-align: right;
+   list-style: none;
+
+}
+
+
+.navbar__menu li {
+   display: inline-block;
+}
+
+
+.navbar__menu .menu__link {
+   display: block;
+   padding: 1em;
+   font-weight: bold;
+   text-decoration: none;
+   color: #000;
+}
+
+
+.navbar__menu .menu__link:hover {
+   background: #333;
+   color: #fff;
+   transition: ease 0.3s all;
+}
+
+
+/* Header Styles */
+.page__header {
+   background: #fff;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   z-index: 5;
+}
+
+
+/* Footer Styles */
+.page__footer {
+   background: #000;
+   padding: 3em;
+   color: #fff;
+}
+
+
+.page__footer p{
+   color: #fff;
+}
+
+
+/* ---- Theme Rules ---- */
+/* content Styles */
+.landing__container {
+   padding: 1em;
+   text-align: left;
+}
+
+
+section:nth-of-type(even) .landing__container {
+   margin-right: 0;
+   margin-left: auto;
+   text-align: right;
+}
+
+
+/* Background Circles */
+/* Note that background circles are created with psuedo elements before and after */
+/* Circles appear to be random do to use of :nth-of-type psuedo class */
+section:nth-of-type(odd) .landing__container::before {
+   content: '';
+   background: rgba(255, 255, 255, 0.187);
+   position: absolute;
+   z-index: -5;
+   width: 20vh;
+   height: 20vh;
+   border-radius: 50%;
+   opacity: 0;
+   transition: ease 0.5s all;
+}
+
+section:nth-of-type(even) .landing__container::before {
+   content: '';
+   background: rgb(255,255,255);
+   background: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%);
+   position: absolute;
+   right: 3em;
+   /*bottom: 20em;*/
+   z-index: -5;
+   width: 10vh;
+   height: 10vh;
+   border-radius: 50%;
+   opacity: 0;
+   transition: ease 0.5s all;
+}
+
+section:nth-of-type(3n) .landing__container::after {
+   content: '';
+   background: rgb(255,255,255);
+   background: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%);
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   z-index: -5;
+   width: 10vh;
+   height: 10vh;
+   border-radius: 50%;
+   opacity: 0;
+   transition: ease 0.5s all;
+}
+
+section:nth-of-type(3n + 1) .landing__container::after {
+   content: '';
+   background: rgb(255,255,255);
+   background: linear-gradient(0deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.2) 100%);
+   position: absolute;
+   right: 20vw;
+   bottom: -5em;
+   z-index: -5;
+   width: 15vh;
+   height: 15vh;
+   border-radius: 50%;
+   opacity: 0;
+   transition: ease 0.5s all;
+}
+
+
+/* ---- Theme State Rules ---- */
+/* Section Active Styles */
+/* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
+section.your-active-class {
+   background: rgb(70, 8, 63);
+   background: linear-gradient(0deg, rgba(124, 3, 90, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+section.your-active-class .landing__container::before {
+   opacity: 1;
+   animation: rotate 4s linear 0s infinite forwards;
+}
+
+section.your-active-class .landing__container::after {
+   opacity: 1;
+   bottom: 1.7em;
+   animation: rotate 5s linear 0s infinite forwards reverse;
+}
+
+/* Section Active Styles Keyframe Animations */
+@keyframes rotate {
+ from {
+   transform: rotate(0deg)
+              translate(-1em)
+              rotate(0deg);
+ }
+ to {
+   transform: rotate(360deg)
+              translate(-1em)
+              rotate(-360deg);
+ }
+}
+
+
+/*----------------------@ different media screen width ----------------------------------*/
+/* ADJUST:  responsive on different screen width */
+
+/* style on small screen max-width 35em 0r 560px */
+@media only screen and (max-width: 35em){
+/* navigation menu styles in max-width=35em or 560px */
+   .navbar__menu {
+       right: 43%;
+       height: 100%;
+   }
+
+
+/* unordered list <ul> */
+   #navbar__list {
+       flex-direction: column;
+       padding-left: 0;
+       margin: 0;
+       text-align: center;
+       position: absolute;
+       top: 0.5em;
+       height: 93%;
+       width: 100%;
+   }
+
+
+   li {
+       display: block;
+       margin: auto;
+       font-size: 1em;
+       border-bottom: 0.2em white solid;
+       width: 100%;
+   }
+
+
+/* anchor element */
+   .menu__links {
+       font-weight: bold;
+       text-decoration: none;
+       color: rgb(173, 157, 157);
+       cursor: pointer;
+   }
+
+
+/* TODO: hover on anchor element in navigation bar */
+   .menu__links:hover {
+       background: rgb(74, 19, 156);
+       color: rgb(92, 92, 14);
+       transition: ease 0.3s all;
+   }
+
+
+/* first header  of navigation bar */
+   .page__header {
+       background-color: rgb(58, 24, 137);
+       height: 22%;
+   }
+
+
+/* second <header> tag is child of  <main> tag on small width-screen = 35em */
+   .main__hero {
+       position: relative;
+       top: 3em;
+       font-size: 0.8em;
+       right:0.9em
+   }
+
+
+/* content */
+   .landing__container {
+       padding: 1em;
+       bottom: 7em;
+   }
+}
+
+/*----------------on screen width minimium 35.1em---------*/
+@media only screen and (min-width: 35.1em) {
+/* first header */
+   .page__header {
+       background-color: rgb(58, 24, 137);
+       height: 13%;
+   }
+
+
+/* navigation menu */
+   .navbar__menu {
+       height: 100%;
+   }
+
+
+/* unordered list <ul> */
+   #navbar__list {
+       padding: 2.5em 0 0 1em;
+       position: absolute;
+       bottom: 1em;
+       height: 48%;
+       width: 90%;
+       margin: 0.1em;
+   }
+
+
+   li {
+       margin: 2.1em 0.5em 1.0em;
+   }
+
+
+/* anchor tag */
+   .menu__links {
+       display: block;
+       font-weight: bold;
+       text-decoration: none;
+       cursor: pointer;
+       position: relative;
+       bottom: 0.5em;
+       font-size: 1.4em;
+       color: rgb(173, 157, 157);
+   }
+
+
+/* TODO: hover for  anchor tag */
+   .menu__links:hover {
+       background: rgb(13, 3, 86);
+       color: rgb(92, 92, 14);
+       transition: ease 0.3s all;
+   }
+
+
+/* second <header> tag is child of  main tag */
+   .main__hero{
+       position: relative;
+       top: 2.1em;
+   }
+
+
+/* content section */
+   section {
+   font-size: 1.5em;
+}
+
+
+   .landing__container {
+       max-width: 50em;
+       padding: 4em;
+
+   }
+
+}
+
+
+/* ----------------minimum screen width 50em or 800px------------- */
+@media only screen and (min-width: 50em){
+   /* style navigation bar  */
+   /*  header of navigation bar */
+       .page__header {
+           height: 12%;
+       }
+
+   /* navigation menu styles  */
+       .navbar__menu {
+           position: absolute;
+           left: 20%;
+           width :100% ;
+       }
+
+   /* unordered list <ul> */
+       #navbar__list {
+           top: -3em;
+           height: 100%;
+           width: 85%;
+           right: 13em;
+       }
+
+
+       li {
+           margin: 4em auto 0.1em ;
+       }
+
+   }
+
+
+   /* ----------------minimum screen width 62.5em or 1000px------------- */
+@media only screen and (min-width: 62.5em){
+   /* style navigation bar  */
+   /* navigation menu styles  */
+       .navbar__menu {
+           left: 25%;
+       }
+
+   /* unordered list <ul> */
+       #navbar__list {
+           right: 20em;
+       }
+   }
